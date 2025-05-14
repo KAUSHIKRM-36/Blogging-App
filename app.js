@@ -4,6 +4,7 @@ const session = require('express-session');
 const mysql = require('mysql2');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
@@ -12,7 +13,7 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    secret: 'cr7-Goat', // Replace with a secure key
+    secret: process.env.SECRATE_KEY, // Replace with a secure key
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // Set to true if using HTTPS
@@ -20,10 +21,10 @@ app.use(session({
 
 // Database connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Kaushik@03', // Replace with your MySQL password
-    database: 'blogging_platform'
+    host: process.env.HOSTNAME,
+    user: process.env.ROOT,
+    password: process.env.PASSWORD, // Replace with your MySQL password
+    database: process.env.DATABASE
 });
 
 db.connect((err) => {
