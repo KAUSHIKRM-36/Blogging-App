@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="#" class="navbar-brand">Blogging Platform</a>
+            <div class="navbar-links">
+                <a href="/create-post">Create</a>
+               
+                <!-- User Profile Dropdown -->
+                <div class="user-profile">
+                    <i class="fas fa-user-circle" id="profile-icon"></i> <!-- User Icon -->
+                    <div class="dropdown-content" id="dropdown-content">
+                        <i class="fas fa-user-circle"></i> <!-- User Icon -->
+                        <span><%= username %></span> <!-- Display Username -->
+                        <button href="#" id="delete-account-link">Delete Account</button>
+                        <button onclick="window.location.href='/logout';">Logout</button>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Delete Account Confirmation Modal -->
+        <div id="delete-account-modal" class="modal">
+            <div class="modal-content">
+                <h3>Delete Account</h3>
+                <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                <div class="modal-buttons">
+                    <button id="confirm-delete">Delete</button>
+                    <button id="cancel-delete">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard">
+        <h2>   Welcome to Your Dashboard!</h2>
+
+        <!-- Explore Posts Section -->
+        <div class="explore-posts">
+
+            <form action="/search" method="GET" class="search-form">
+               
+                <input type="text" name="query" placeholder="Search posts ..." required>
+
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i> <!-- FontAwesome magnifying lens icon -->
+                </button>
+
+            </form>
+            
+
+            <h3>Explore Posts</h3>
+            
+            <div class="posts-container">
+                <% if (allPosts && allPosts.length > 0) { %>
+                    <% allPosts.forEach(post => { %>
+                        <div class="post-card" onclick="window.location.href='/post/<%= post.id %>'">
+                            <h3><%= post.title %></h3>
+                            <p class="post-content"><%= post.content.substring(0, 150) %>...</p>
+                            <div class="post-meta">
+                                <span class="category"><%= post.category %></span>
+                                <span class="writer">By: <%= post.writer_name %></span>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No posts found.</p>
+                <% } %>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <!-- delete account modal ke liye  -->
+    <script>
+        // Get the modal and links
+        const deleteAccountModal = document.getElementById('delete-account-modal');
+        const deleteAccountLink = document.getElementById('delete-account-link');
+        const confirmDeleteButton = document.getElementById('confirm-delete');
+        const cancelDeleteButton = document.getElementById('cancel-delete');
+    
+        // Open the modal when "Delete Account" is clicked
+        deleteAccountLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            deleteAccountModal.style.display = 'flex';
+        });
+    
+        // Close the modal when "Cancel" is clicked
+        cancelDeleteButton.addEventListener('click', () => {
+            deleteAccountModal.style.display = 'none';
+        });
+    
+        // Handle account deletion when "Delete" is clicked
+        confirmDeleteButton.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/delete-account', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                if (response.ok) {
+                    window.location.href = '/logout'; // Redirect to logout after deletion
+                } else {
+                    alert('Failed to delete account. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+
+</body>
+</html>

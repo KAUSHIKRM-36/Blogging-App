@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">Blogging Platform</a>
+    </nav>
+
+    <div class="index-title">
+        <h3 style="color:#007bff">Welcome To The BLOGGING Platform</h3>
+    </div>
+
+    <div class="animation-overlay">
+        <h3>Share Your Stories With The World</h3>
+        <p>Join our growing community of writers and thinkers</p>
+        <div class="cta-buttons">
+            <a href="/register" class="cta-button">Register</a>
+            <a href="/login" class="cta-button">Login</a>
+        </div>
+    </div>
+
+    <!-- Fullscreen 3D Animation Container -->
+    <div id="threejs-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scene setup
+            const container = document.getElementById('threejs-container');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            const spheres = [];
+            const sphereCount = 50; // Number of spheres to create
+
+            // Function to create a random color
+            function getRandomColor() {
+                return new THREE.Color(Math.random(), Math.random(), Math.random());
+            }
+
+            // Create spheres with random colors and velocities
+            for (let i = 0; i < sphereCount; i++) {
+                const sphereGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+                const sphereMaterial = new THREE.MeshBasicMaterial({ color: getRandomColor() });
+                const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+                
+                // Random starting position
+                sphere.position.set(
+                    Math.random() * 10 - 5, // X position between -5 and 5
+                    Math.random() * 10 - 5, // Y position between -5 and 5
+                    Math.random() * 10 - 5  // Z position between -5 and 5
+                );
+                
+                // Random velocity
+                sphere.velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.03, // Random velocity on X
+                    (Math.random() - 0.5) * 0.03, // Random velocity on Y
+                    (Math.random() - 0.5) * 0.03  // Random velocity on Z
+                );
+
+                scene.add(sphere);
+                spheres.push(sphere);
+            }
+
+            // Camera position
+            camera.position.z = 5;
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Update the positions of all spheres
+                spheres.forEach(sphere => {
+                    sphere.position.add(sphere.velocity);
+
+                    // Check for collisions with the viewport bounds
+                    if (sphere.position.x > 5 || sphere.position.x < -5) {
+                        sphere.velocity.x = -sphere.velocity.x; // Reverse direction on X axis
+                    }
+                    if (sphere.position.y > 5 || sphere.position.y < -5) {
+                        sphere.velocity.y = -sphere.velocity.y; // Reverse direction on Y axis
+                    }
+                    if (sphere.position.z > 5 || sphere.position.z < -5) {
+                        sphere.velocity.z = -sphere.velocity.z; // Reverse direction on Z axis
+                    }
+                });
+
+                renderer.render(scene, camera);
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            animate();
+        });
+    </script>
+</body>
+</html>

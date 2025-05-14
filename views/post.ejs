@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= post.title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">Blogging Platform</a>
+        <div class="navbar-links">
+            <a href="/dashboard">Home</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Post Detail -->
+    <div class="container">
+        <div class="post-detail">
+            <!-- Edit and Delete Buttons at Top-Right -->
+            <% if (post.user_id === userId) { %>
+                <div class="post-actions">
+                    <a href="/edit-post/<%= post.id %>" class="edit-button">
+                        <i class="fas fa-pencil-alt"></i> <!-- Pencil Icon -->
+                    </a>
+                    <a href="/delete-post/<%= post.id %>" class="delete-button">
+                        <i class="fas fa-trash-alt"></i> <!-- Dustbin Icon -->
+                    </a>
+
+                </div>
+            <% } %>
+            <!-- Post Content -->
+            <h2><%= post.title %></h2>
+            <p class="post-content"><%= post.content %></p>
+            <div class="post-meta">
+                <span class="category"><%= post.category %></span>
+                <span class="writer">By: <%= post.writer_name %></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

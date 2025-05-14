@@ -1,0 +1,736 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Light background */
+    color: #333; /* Default text color */
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* Primary link color */
+}
+
+a:hover {
+    color: #0056b3; /* Darker shade for hover */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #0481ff; /* Dark background for navbar */
+    padding: 1rem 2rem; /* Padding for spacing */
+    display: flex;
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ecf0f1; /* Light text color for brand */
+    text-decoration: none;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 1.5rem; /* Space between links */
+}
+
+.navbar-links a {
+    color: #ecf0f1; /* Light text color for links */
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #72c6ff; /* Highlight color on hover */
+}
+
+.navbar-links a.active {
+    color: #80c6f5; /* Highlight color for active link */
+    font-weight: 600;
+}
+
+/* User Profile Dropdown */
+.user-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-profile:hover {
+    transform: scale(1.05);
+}
+
+.user-profile i {
+    font-size: 1.6rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.user-profile:hover i {
+    color: #007bff;
+}
+
+/* Dropdown content styling */
+.user-profile .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    width: max-content;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+/* Show dropdown on hover */
+.user-profile:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Button styling in dropdown */
+.dropdown-content button {
+    color: #333;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    width: 100%;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.dropdown-content button:hover {
+    background-color: #aec6ec;
+    padding-left: 1.25rem;
+}
+
+.dropdown-content button:focus {
+    outline: none;
+    background-color: #e0e7ff;
+}
+
+.dropdown-content span {
+    color: #1e00ff;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+/* Optional: Add subtle animation for dropdown content */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Delete Account Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.modal-buttons button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#confirm-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+#cancel-delete {
+    background-color: #ccc;
+    color: black;
+}
+
+.index-title h3 {
+    margin:1em;
+    font-size: 2rem; /* Adjusted font size */
+    color: #0056b3; /* Slightly darker primary color */
+    text-align: center;
+    font-weight: 1000;
+}
+
+/* New Three.js animation styles */
+#threejs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Behind all other content */
+    background-color: #f4f4f9; /* Light background to match website theme */
+}
+
+/* Style for overlay content */
+.animation-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 20vh;
+    color: #333; /* Default text color to match the website */
+}
+
+.animation-overlay h3 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #007bff; /* Use primary blue color for headings */
+}
+
+.animation-overlay p {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: #333; /* Text color to match the website */
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    background-color: rgba(0, 128, 255, 0.8); /* Primary blue color */
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .animation-overlay h3 {
+        font-size: 2rem;
+    }
+
+    .animation-overlay p {
+        font-size: 1.2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+    }
+}
+/* Category Tag */
+.category {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 0.4rem 0.8rem; /* Slightly larger padding for better proportion */
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width:10em;
+    text-transform: capitalize;
+    text-align: left;
+}
+
+/* Explore Posts Section  on the DashBoard*/
+.explore-posts {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 1.5rem;
+}
+
+.explore-posts h3 {
+    font-size: 1.5rem;
+    color: #2c3e50; /* Dark text color for headings */
+    margin-bottom: 1rem;
+}
+
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 1.5rem; /* Space between cards */
+}
+
+.post-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    gap: 1rem; /* Space between elements */
+    text-overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.post-card h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #007bff; /* Primary color for titles */
+    text-align: left; /* Align title to the left */
+}
+
+.post-card p {
+    margin: 0;
+    color: #555; /* Secondary text color */
+    line-height: 1.6;
+    text-align: left; /* Align text to the left */
+}
+
+.post-card .category {
+    display: inline-block;
+    background: #007bff; /* Primary color for category badge */
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: left; /* Align category to the left */
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px; /* Optional: Control max-width */
+    margin-bottom: 2rem;
+}
+
+/* Search Input */
+.search-form input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Search Button (Magnifying Lens Icon) */
+.search-button {
+    background-color: #007bff;
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 0 0 5px; /* Rounded left side */
+}
+
+.search-button i {
+    color: white;
+    font-size: 1.2rem; /* Icon size */
+    transition: color 0.3s ease;
+}
+
+.search-button:hover i {
+    color: #fff;
+}
+
+/* Button Hover Effect */
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+/* Input Focus Effect */
+.search-form input:focus {
+    border-color: #007bff;
+}
+
+/* Home Page Styles */
+
+.index-container {
+    max-width: 1200px; /* Limit container width */
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto; /* Center the container */
+    padding: 0 1rem; /* Add padding for smaller screens */
+    width: 100%; /* Ensure container takes full width */
+    height: 100%;
+}
+
+.index-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the container */
+    text-align: center; /* Center align text */
+}
+
+.index-container h2 {
+    font-size: 2rem;
+    color: #2c3e50; /* Dark text color for headings */
+    margin-bottom: 1.5rem;
+}
+
+
+/* Container for Centering the Card */
+/* Container Styles */
+.container {
+    max-width: 1200px; /* Limit container width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto; /* Center the container */
+    padding: 0 1rem; /* Add padding for smaller screens */
+    width: 100%; /* Ensure container takes full width */
+    height: 100%;
+}
+
+/* General Card Styles (Common Properties) */
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* Login/Register Cards */
+.auth-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    height: 100%;
+    width: 100%;
+    max-width: 400px; /* Limit card width */
+    text-align: center;
+}
+
+.auth-card h2 {
+    font-size: 1.75rem;
+    color: #2c3e50; /* Dark text color for headings */
+    margin-bottom: 1.5rem;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between form elements */
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.auth-card button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.auth-card button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.auth-card p {
+    margin-top: 1rem;
+    color: #555; /* Secondary text color */
+}
+
+.auth-card a {
+    color: #007bff; /* Primary link color */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-card a:hover {
+    color: #0056b3; /* Darker shade on hover */
+}
+
+/* Create Post Page Styles */
+.create-post-form {
+    background: white;
+    padding: 2.5rem; /* Increased padding for a bigger card */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 800px; /* Increased max-width for a bigger card */
+    margin: 0 auto; /* Center the form */
+}
+
+.create-post-form .form-group {
+    margin-bottom: 2rem; /* Increased space between form groups */
+}
+
+.create-post-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.75rem; /* Increased space below labels */
+    color: #2c3e50; /* Dark text color for labels */
+    font-size: 1.1rem; /* Slightly larger font size for labels */
+}
+
+.create-post-form input,
+.create-post-form textarea {
+    width: 100%;
+    padding: 1rem; /* Increased padding for inputs */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Slightly larger border radius */
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-post-form input:focus,
+.create-post-form textarea:focus {
+    border-color: #007bff; /* Highlight border on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Stronger glow on focus */
+    outline: none; /* Remove default outline */
+}
+
+.create-post-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 200px; /* Increased minimum height for textarea */
+}
+
+.create-post-form button {
+    width: 100%;
+    padding: 1rem; /* Increased padding for button */
+    background: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Slightly larger border radius */
+    cursor: pointer;
+    font-size: 1.1rem; /* Slightly larger font size for button */
+    transition: background-color 0.3s ease;
+}
+
+.create-post-form button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Post Cards (Explore Posts and Create Post) */
+.create-post-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 800px; /* Wider card for posts */
+    margin: 0 auto; /* Center the card */
+}
+
+.create-post-card h2 {
+    font-size: 1.75rem;
+    color: #2c3e50; /* Dark text color for headings */
+    margin-bottom: 1.5rem;
+}
+
+.create-post-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Space between form elements */
+}
+
+.create-post-card input,
+.create-post-card textarea {
+    width: 100%;
+    padding: 1rem; /* Increased padding for inputs */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Slightly larger border radius */
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-post-card input:focus,
+.create-post-card textarea:focus {
+    border-color: #007bff; /* Highlight border on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Stronger glow on focus */
+    outline: none; /* Remove default outline */
+}
+
+.create-post-card textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 200px; /* Increased minimum height for textarea */
+}
+
+.create-post-card button {
+    width: 100%;
+    padding: 1rem; /* Increased padding for button */
+    background: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Slightly larger border radius */
+    cursor: pointer;
+    font-size: 1.1rem; /* Slightly larger font size for button */
+    transition: background-color 0.3s ease;
+}
+
+.create-post-card button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem; /* Reduce padding on smaller screens */
+    }
+
+    .navbar-links {
+        gap: 1rem; /* Reduce gap between links */
+    }
+
+    .navbar-links a {
+        font-size: 0.9rem; /* Smaller font size */
+    }
+
+    .posts-container {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
+
+
+/* Post Content Truncation */
+/* Post Detail Card and PAGE */
+.post-detail {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    position: relative; /* For positioning the action buttons */
+}
+
+.post-detail h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #3d3d3d;
+}
+
+.post-meta .category {
+    background-color: #ac9090;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+}
+
+.post-meta .writer {
+    font-style: italic;
+}
+
+/* Post Actions (Edit and Delete Buttons) */
+.post-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.post-actions a {
+    color: #555;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.post-actions a:hover {
+    color: #333;
+}
+
+/* Edit Button (Pencil Icon) */
+.edit-button {
+    color: #4CAF50; /* Green color for edit */
+}
+
+/* Delete Button (Dustbin Icon) */
+.delete-button {
+    color: #f44336; /* Red color for delete */
+}
